@@ -1,62 +1,72 @@
-Keyboard Shortcuts for Google Translate™
-========================================
+# Keyboard Shortcuts for Google Translate™ (KS4GT)
 
-### [Keyboard Shortcuts for Google Translate](http://goo.gl/FBkb9)  
-([Install from Chrome Web Store](http://goo.gl/FBkb9))  
-  
-  
-Provides keyboard shortcuts in the Google Translate™ page.
+Provides customizable keyboard shortcuts for the Google Translate™ page. This is a modernized fork of the original extension, now built with **TypeScript**, **Vite**, and **Tailwind CSS**, supporting **Manifest V3**.
 
-alt (+ shift) + [key]s are binded each indexed buttons.  
-shift + enter is binded translate button.  
-[key]s are customizable.(from ver 2.0)  
+## Features
+- **Customizable Shortcuts:** Bind keys to almost every button on the page.
+- **Visual Feedback:** Shows key captions directly on the buttons.
+- **Cross-Platform:** Supports Windows (Alt), Mac (Option/Control), and Linux.
 
-![GoogleTranslate ScreenShot](https://raw.github.com/yamayamayamaji/Keyboard-Shortcuts-for-Google-Translate/master/ss-readme1.png)
-  
-default settings are  
-###### [Win]  
-* lang swap -> Alt + 0  
-* lang1 -> Alt + 1  
-* lang2 -> Alt + 2  
-* lang3 -> Alt + 3  
-* lang4 -> Alt + 4  
-* lang5 -> Alt + 5  
-* lang6 -> Alt + 6  
-* lang7 -> Alt + 7  
-* lang list(source) -> Alt + 8  
-* lang list(target) -> Alt + 9  
-* source delete -> Alt + d  
-* source microphone -> Alt + m  
-* source listen -> Alt + Shift + l  
-* show virtual keyboard -> (no default but customizable)  
-* show input tools -> (no default but customizable)  
-* result select all -> Alt + a  
-* result copy -> Alt + c  
-* result listen -> Alt + l  
-* suggest edit -> (no default but customizable)  
-* save to phrasebook -> Alt + p  
-* focus to source input -> Alt + f  
-* translate -> Shift + Enter  
-  
-###### [Mac]  
-use [Option] or [Control] instead of [Alt]
-  
-### customization
-If you want to customize keys, click the options link which is shown on the extensions management page at chrome://extensions
-or right click extension's icon at address bar.  
-<br>
-![Options Link ScreenShot](https://raw.github.com/yamayamayamaji/Keyboard-Shortcuts-for-Google-Translate/master/ss-readme2.png)  
-<br>
-<br>
-#### donation
-donations are greatly appreciated.  
+## Default Shortcuts
+### Windows / Linux
+* **Swap Languages:** `Alt + 0`
+* **Select Languages:** `Alt + 1` through `Alt + 7`
+* **Language Menus:** `Alt + 8` (Source), `Alt + 9` (Target)
+* **Delete Source:** `Alt + D`
+* **Source Microphone:** `Alt + M`
+* **Listen (Source):** `Alt + Shift + L`
+* **Listen (Result):** `Alt + L`
+* **Copy Result:** `Alt + C`
+* **Focus to Input:** `Alt + F`
+* **Translate:** `Shift + Enter`
 
-<!--- pledgie (paypal) donation -->
-<!--
-<a href='https://pledgie.com/campaigns/30417'><img alt='Click here to lend your support to: Keyboard Shortcuts for Google Translate and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/30417.png?skin_name=chrome' border='0' ></a>  
- -->
+### Mac
+Use `Option` or `Control` instead of `Alt`.
 
-- GitHub Sponsors
-  - https://github.com/sponsors/yamayamayamaji
-- Patreon
-  - https://www.patreon.com/yamayamayamaji
+## Development
+
+### Prerequisites
+- Node.js (v18+)
+- npm
+
+### Setup
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Scripts
+- **Development:** Run the Vite development server with HMR:
+  ```bash
+  npm run dev
+  ```
+- **Build:** Generate a production-ready extension in the `dist/` folder:
+  ```bash
+  npm run build
+  ```
+
+## Architecture
+- `src/`: Core source code in TypeScript.
+  - `src/background/`: Background service worker.
+  - `src/content/`: Content scripts and CSS injection logic.
+  - `src/options/`: Options page (Tailwind CSS + TS).
+- `dev/`: Static assets, icons, and default configuration JSONs.
+- `manifest.json`: Extension Manifest V3.
+
+## Installation (Manual)
+1. Run `npm run build`.
+2. Open Chrome and navigate to `chrome://extensions`.
+3. Enable "Developer mode" (top right).
+4. Click "Load unpacked" and select the `dist/` folder from this project.
+
+## Credits
+Original author: [Ryosuke Yamaji](https://github.com/yamayamayamaji)
+
+## Donations
+If you find this extension useful, consider supporting the original author:
+- [GitHub Sponsors](https://github.com/sponsors/yamayamayamaji)
+- [Patreon](https://www.patreon.com/yamayamayamaji)
+
+---
+*Google Translate™ is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.*
