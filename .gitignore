@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.pem
+*.log
+ChromeWebStore/
+FireFoxAddOns/
+trash/
+.DS_Store
+.idea/
+dev/src/
+# Note: src/ was previously ignored but now contains the source code.

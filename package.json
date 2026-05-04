@@ -1,0 +1,28 @@
+{
+  "name": "ks4gt",
+  "version": "2.8.5.0",
+  "description": "Keyboard Shortcuts for Google Translate",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamayamayamaji/Keyboard-Shortcuts-for-Google-Translate.git"
+  },
+  "author": "Ryosuke Yamaji",
+  "license": "MIT",
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/chrome": "^0.0.306",
+    "@types/node": "^22.13.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "sass": "^1.84.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}
