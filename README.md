@@ -1,6 +1,6 @@
 # Keyboard Shortcuts for Google Translate™ (KS4GT)
 
-Provides customizable keyboard shortcuts for the Google Translate™ page. This is a modernized fork of the original extension, now built with **TypeScript**, **Vite**, and **Tailwind CSS**, supporting **Manifest V3**.
+Provides customizable keyboard shortcuts for the Google Translate™ page. This repository is a modernized version modified based on [yamayamayamaji/Keyboard-Shortcuts-for-Google-Translate](https://github.com/yamayamayamaji/Keyboard-Shortcuts-for-Google-Translate), now built with **TypeScript**, **Vite**, and **Tailwind CSS**, supporting **Manifest V3**.
 
 ## Features
 - **Customizable Shortcuts:** Bind keys to almost every button on the page.
