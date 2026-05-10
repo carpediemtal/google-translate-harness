@@ -42,7 +42,7 @@ const KS4GT_CS = {
       domUpdateObserver(this: any) {
         const sourceFooter = document.querySelector('.FFpbKc');
         const resultContainer = document.querySelector('.usGWQd');
-        const initializer = new MutationObserver(() => this.init());
+        const initializer = new MutationObserver(() => this.debouncedInit());
         resultContainer && initializer.observe(resultContainer, { childList: true });
         sourceFooter && initializer.observe(sourceFooter, { childList: true, subtree: true });
 
@@ -61,7 +61,7 @@ const KS4GT_CS = {
       domUpdateObserver(this: any) {
         const sourceFooter = document.querySelector('.FFpbKc');
         const resultContainer = document.querySelector('.dePhmb');
-        const initializer = new MutationObserver(() => this.init());
+        const initializer = new MutationObserver(() => this.debouncedInit());
         resultContainer && initializer.observe(resultContainer, { childList: true });
         sourceFooter && initializer.observe(sourceFooter, { childList: true, subtree: true });
 
@@ -80,7 +80,7 @@ const KS4GT_CS = {
       domUpdateObserver(this: any) {
         const sourceFooter = document.querySelector('.source-or-target-footer');
         const resultContainer = document.querySelector('.tlid-results-container');
-        const initializer = new MutationObserver(() => this.init());
+        const initializer = new MutationObserver(() => this.debouncedInit());
         resultContainer && initializer.observe(resultContainer, { childList: true });
         sourceFooter && initializer.observe(sourceFooter, { childList: true, subtree: true });
       },
@@ -96,6 +96,7 @@ const KS4GT_CS = {
     this.injectStyleSheet(chrome.runtime.getURL(`assets/${config.cssFileName}`));
     this.domUpdateObserver = config.domUpdateObserver.bind(this);
     this.observeDomUpdated();
+    this.listenKeyEvent();
 
     chrome.runtime.sendMessage({
       defaultSettings: { baseName: config.defaultSettingsBaseName },
@@ -121,8 +122,13 @@ const KS4GT_CS = {
     this.setupRecievers(this.defaultSettings);
     this.applyUserSettings();
     this.initKeyMaps();
-    this.listenKeyEvent();
     this.setKeyCaption();
+  },
+
+  debounceTimer: null as any,
+  debouncedInit() {
+    clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => this.init(), 200);
   },
 
   getUiVersion() {
@@ -160,7 +166,7 @@ const KS4GT_CS = {
   },
 
   setKeyCaption() {
-    const altCaption = (this.platformInfo.os === chrome.runtime.PlatformOs.MAC) ? 'option' : 'alt';
+    const altCaption = (this.platformInfo.os === 'mac') ? 'option' : 'alt';
 
     Object.values(this.defaultSettings).forEach((rcv) => {
       let key = rcv.shortcutKey;
@@ -233,7 +239,9 @@ const KS4GT_CS = {
 
   listenKeyEvent() {
     const translateRcv = this.defaultSettings.translate;
-    document.onkeydown = (evt: KeyboardEvent) => {
+    const handler = (evt: KeyboardEvent) => {
+      if (evt.repeat) return;
+
       let rcv: { elm: HTMLElement, cmd: string } | undefined;
 
       if (evt.shiftKey && evt.key === 'Enter') {
@@ -255,12 +263,14 @@ const KS4GT_CS = {
       if (rcv) {
         this.emulate(rcv.cmd, rcv.elm);
         evt.preventDefault();
+        evt.stopPropagation();
       }
     };
+    document.addEventListener('keydown', handler, true);
   },
 
   getAssignedReciever(evt: KeyboardEvent) {
-    const pivotKeyPressed = (this.platformInfo.os === chrome.runtime.PlatformOs.MAC) ?
+    const pivotKeyPressed = (this.platformInfo.os === 'mac') ?
       evt.altKey || evt.ctrlKey : evt.altKey;
 
     if (!pivotKeyPressed) return;
@@ -288,11 +298,16 @@ const KS4GT_CS = {
   },
 
   emulateMouseDownUp(elm: HTMLElement) {
-    const events = ['mouseover', 'mousedown', 'mouseup', 'mouseout'];
-    events.forEach(e => elm.dispatchEvent(new MouseEvent(e, { bubbles: true })));
+    const events = ['mousedown', 'mouseup', 'click'];
+    events.forEach(e => {
+      const opt = { bubbles: true, cancelable: true, view: window };
+      elm.dispatchEvent(new MouseEvent(e, opt));
+    });
   },
 
-  emulateClick(elm: HTMLElement) { elm.click(); },
+  emulateClick(elm: HTMLElement) {
+    this.emulateMouseDownUp(elm);
+  },
   emulateFocus(elm: HTMLElement) { elm.focus(); },
 
   camelize(str: string) {

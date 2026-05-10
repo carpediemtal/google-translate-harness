@@ -238,7 +238,7 @@
         "assets/*.css",
         "dev/default_settings*.min.json"
       ],
-      "matches": ["*://translate.google.com/*", "*://translate.google.*/*"]
+      "matches": ["<all_urls>"]
     }
   ]
 }

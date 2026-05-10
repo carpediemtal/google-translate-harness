@@ -31,12 +31,12 @@
    * language area
    */
   "swap": {
-    "shortcutKey": "0",
+    "shortcutKey": "s",
     "group": "lang",
     "alias": "lang swap",
     "alt": true,
     "clickTarget": {
-      "selector": ".U2dVxe > i"
+      "selector": "[jsname=\"S0p99c\"]"
     }
   },
   "langDetect": {

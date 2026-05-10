@@ -201,7 +201,7 @@ const KS4GT_OP = {
       return;
     }
 
-    const pivotKey = (this.platformInfo.os === chrome.runtime.PlatformOs.MAC) ?
+    const pivotKey = (this.platformInfo.os === 'mac') ?
       '[Option] or [Control]' : '[Alt]';
 
     this.view.init({
