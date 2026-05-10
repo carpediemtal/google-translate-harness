@@ -9,7 +9,7 @@ Provides customizable keyboard shortcuts for the Google Translate™ page. This 
 
 ## Default Shortcuts
 ### Windows / Linux
-* **Swap Languages:** `Alt + 0`
+* **Swap Languages:** `Alt + S`
 * **Select Languages:** `Alt + 1` through `Alt + 7`
 * **Language Menus:** `Alt + 8` (Source), `Alt + 9` (Target)
 * **Delete Source:** `Alt + D`
@@ -51,7 +51,7 @@ Use `Option` or `Control` instead of `Alt`.
   - `src/background/`: Background service worker.
   - `src/content/`: Content scripts and CSS injection logic.
   - `src/options/`: Options page (Tailwind CSS + TS).
-- `dev/`: Static assets, icons, and default configuration JSONs.
+- `dev/`: Static assets, icons, and default configuration `.jsonc` files (minified to `.json` for production).
 - `manifest.json`: Extension Manifest V3.
 
 ## Installation (Manual)
