@@ -34,6 +34,20 @@ To create a production-ready build in the `dist/` directory:
 npm run build
 ```
 
+### Deployment (WSL to Windows)
+To build the project and automatically copy the production files to your Windows Desktop for manual browser loading:
+```bash
+npm run deploy
+```
+This script (`copy-to-desktop.sh`) dynamically locates your Windows Desktop and syncs the files to a `ks4gt-dist` folder.
+
+## Git Configuration (Multi-Account)
+This repository is configured to use the `carpediemtal` GitHub account via an SSH alias defined in `~/.ssh/config`.
+
+**Remote URL:** `git@github-carpediemtal:carpediemtal/google-translate-harness.git`
+
+If you need to re-link or clone this project while maintaining the correct account, ensure the SSH host matches the alias `github-carpediemtal`.
+
 ## Development Conventions
 - **TypeScript:** All new logic should be written in TypeScript within the `src/` directory.
 - **Styling:** Use Tailwind CSS for the Options page. Content script styling currently relies on existing CSS files in the `dev/` directory, which are injected dynamically.
